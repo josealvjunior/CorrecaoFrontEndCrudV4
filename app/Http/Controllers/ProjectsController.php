@@ -61,6 +61,9 @@ class ProjectsController extends Controller
             return ['error'=> 'Acesso Negado'];
         }
         return $this->service->read($id);
+
+
+
     }
 
     /**
@@ -92,13 +95,13 @@ class ProjectsController extends Controller
         $this->repository->find($id)->delete();
     }
 
-    private function checkProjectOwner($projectId)
+    public function checkProjectOwner($projectId)
     {
         $userId = \Authorizer::getResourceOwnerId();
         return $this->repository->isOwner($projectId, $userId);
     }
 
-    private function checkProjectMember($projectId)
+    public function checkProjectMember($projectId)
     {
         $userId = \Authorizer::getResourceOwnerId();
         return $this->repository->hasMember($projectId, $userId);

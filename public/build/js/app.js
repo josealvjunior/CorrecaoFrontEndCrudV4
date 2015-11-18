@@ -55,6 +55,10 @@ app.config([
             templateUrl: 'build/views/projectNotes/edit.html',
             controller: 'ProjectNotesEditController'
         })
+        .when('/projects/:id/notes/:noteId/remove', {
+            templateUrl: 'build/views/projectNotes/remove.html',
+            controller: 'ProjectNotesRemoveController'
+        })
         .when('/projects/:id/note/new', {
             templateUrl: 'build/views/projectNotes/new.html',
             controller: 'ClientNewController'
