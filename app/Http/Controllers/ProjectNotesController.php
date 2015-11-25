@@ -70,7 +70,7 @@ class ProjectNotesController extends Controller
      */
     public function update(Request $request, $id, $noteId)
     {
-       if($this->checkProjectsOwner($id)){
+       if($this->checkProjectsOwner($id)== false){
            return ['error'=> 'Acesso Negado'];
        }
         return $this->service->update($request->all(),$noteId);
@@ -98,7 +98,7 @@ class ProjectNotesController extends Controller
     private function checkProjectsMember($projectId)
     {
         $userId = \Authorizer::getResourceOwnerId();
-        return $this->projectsControlle->checkProjectMember($projectId, $userId);
+        return $this->projectsController->checkProjectMember($projectId, $userId);
     }
 
     private function checkProjectPermissions($projectId)

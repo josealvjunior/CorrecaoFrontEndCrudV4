@@ -10,6 +10,7 @@ namespace project\Services;
 
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use project\Repositories\ProjectNotesRepository;
 use Illuminate\Http\Exception;
@@ -63,7 +64,6 @@ class ProjectNotesService
     public function update(array $data, $id)
     {
         try {
-            $this->validator->with($data)->passesOrFail();
             return $this->repository->update($data, $id);
         } catch(ValidatorException $e) {
             return [
@@ -72,4 +72,6 @@ class ProjectNotesService
             ];
         };
     }
+
+
 }
